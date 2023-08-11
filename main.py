@@ -9,6 +9,8 @@ from functools import wraps
 app = Flask(__name__, static_url_path='/static')
 app.debug = True
 
+
+# creating home page and defining categorical inputs
 @app.route('/', methods = ['GET'])
 def categories():
 
@@ -28,6 +30,8 @@ def categories():
     return render_template('home.html', locations = locations, genders=genders, number_prods = number_prods, tenures=tenures, creditcards = creditcards, actives=actives)
 
 
+# Creating Result Page
+# This page will receive inputs from home.html, pass them to our trained ML model, and then display the results.
 @app.route('/result', methods = ['GET', 'POST'])
 def prediction():
     
