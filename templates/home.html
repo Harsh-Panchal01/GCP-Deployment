@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <title>Demo for Customer Churning</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+
+    
+    <h1>Customer Churning Classifier</h1>
+    <div>
+    <form action = "{{url_for('prediction')}}" method = 'POST'>
+
+        <div class="credit_score">
+            <label for="credit_score"> Credit Score:</label>
+            <input type="number" id="credit_score" name="credit_score" min="0" max="1000", value = '0', placeholder="Enter Score">
+
+        </div>
+
+        <div class="dropdown">
+            <label> Location: </label>
+            <select name="location">
+                {% for location in locations %}
+                <option value="{{ location }}">{{ location }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+
+        <div class = 'dropdown'>
+            <label> Gender: </label>
+            <select name = 'gender' method = 'GET' title="Gender" action = "/">
+                {% for gender in genders%}
+                <option value = "{{gender}}">{{gender}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="age">
+            <label for="age"> Age:</label>
+            <input type="number" id="age" name="age" min="18" max="110", value = '18', placeholder="Enter Age">
+
+        </div>
+
+        <div class = 'dropdown'>
+            <label> Tenure: </label>
+            <select name = 'tenure' method = 'GET' title="tenure" action = "/">
+                {% for tenure in tenures%}
+                <option value = "{{tenure}}">{{tenure}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="balance">
+            <label for="balance"> Account Balance:</label>
+            <input type="number" id="balance" name="balance" min="0" max="100000000000000000000000000000000", value = '0', placeholder="Enter Balance">
+
+        </div>
+
+        <div class = 'dropdown'>
+            <label> No. of Products Active: </label>
+            <select name = 'number_prod' method = 'GET' title="number_prod" action = "/">
+                {% for number_prod in number_prods%}
+                <option value="{{number_prod}}">{{number_prod}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class = 'dropdown'>
+            <label> Does the customer have a credit card??: </label>
+            <select name = 'creditcard' method = 'GET' title="creditcard" action = "/">
+                {% for creditcard in creditcards%}
+                <option value = "{{creditcard}}">{{creditcard}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class = 'dropdown'>
+            <label> Is the customer active?: </label>
+            <select name = 'active' method = 'GET' title="active" action = "/">
+                {% for active in actives%}
+                <option value = "{{active}}">{{active}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <div class="salary">
+            <label for="salary"> Customer's Salary:</label>
+            <input type="number" id="salary" name="salary" min="0" max="100000000000000000000000000000000", value = '0', placeholder="Enter Salary">
+
+        </div>
+
+    </div>
+
+        <button type = "submit" onclick = "prediction()" class = 'btn'>Predict</button>
+   
+
+    </form>
+
+
+</body>
+</html>
